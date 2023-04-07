@@ -4,7 +4,7 @@ import { Document, Types } from 'mongoose';
 import { Marca } from '../../marca/model/marca.model';
 
 @Schema()
-export class ModelosDeMarca extends Document {
+export class Modelo extends Document {
   @Prop({ required: true })
   nombre: string;
 
@@ -18,5 +18,4 @@ export class ModelosDeMarca extends Document {
   descripcion: string;
 }
 
-export const ModelosDeMarcaSchema =
-  SchemaFactory.createForClass(ModelosDeMarca);
+export const ModeloSchema = SchemaFactory.createForClass(Modelo);
