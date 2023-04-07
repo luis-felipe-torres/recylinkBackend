@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { ModeloService } from './modelo.service';
 import { Modelo } from './entities/modelo.entity';
 import { CreateModeloInput } from './dto/create-modelo.input';
@@ -9,7 +9,9 @@ export class ModeloResolver {
   constructor(private readonly modeloService: ModeloService) {}
 
   @Mutation(() => Modelo)
-  createModelo(@Args('createModeloInput') createModeloInput: CreateModeloInput) {
+  createModelo(
+    @Args('createModeloInput') createModeloInput: CreateModeloInput,
+  ) {
     return this.modeloService.create(createModeloInput);
   }
 
@@ -19,17 +21,19 @@ export class ModeloResolver {
   }
 
   @Query(() => Modelo, { name: 'modelo' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.modeloService.findOne(id);
   }
 
   @Mutation(() => Modelo)
-  updateModelo(@Args('updateModeloInput') updateModeloInput: UpdateModeloInput) {
+  updateModelo(
+    @Args('updateModeloInput') updateModeloInput: UpdateModeloInput,
+  ) {
     return this.modeloService.update(updateModeloInput.id, updateModeloInput);
   }
 
   @Mutation(() => Modelo)
-  removeModelo(@Args('id', { type: () => Int }) id: number) {
+  removeModelo(@Args('id', { type: () => String }) id: string) {
     return this.modeloService.remove(id);
   }
 }

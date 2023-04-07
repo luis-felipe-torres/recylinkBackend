@@ -3,6 +3,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import { Marca } from '../../marca/model/marca.model';
 
+export type ModeloDocument = Modelo & Document;
+
 @Schema()
 export class Modelo extends Document {
   @Prop({ required: true })

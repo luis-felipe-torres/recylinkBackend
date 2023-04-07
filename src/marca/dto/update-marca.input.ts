@@ -1,8 +1,10 @@
+import { InputType, PartialType, Field } from '@nestjs/graphql';
 import { CreateMarcaInput } from './create-marca.input';
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 
 @InputType()
 export class UpdateMarcaInput extends PartialType(CreateMarcaInput) {
-  @Field(() => Int)
-  id: number;
+  @Field(() => String)
+  id: string;
 }
+
+/*REVISAR*/

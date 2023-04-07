@@ -1,26 +1,40 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateModeloInput } from './dto/create-modelo.input';
 import { UpdateModeloInput } from './dto/update-modelo.input';
+import { Modelo, ModeloDocument } from './model/modelo.model';
 
 @Injectable()
 export class ModeloService {
-  create(createModeloInput: CreateModeloInput) {
-    return 'This action adds a new modelo';
+  constructor(
+    @InjectModel(Modelo.name)
+    private modeloModel: Model<ModeloDocument>,
+  ) {}
+
+  async create(createModeloInput: CreateModeloInput): Promise<Modelo> {
+    const newModelo = new this.modeloModel(createModeloInput);
+    return newModelo.save();
   }
 
-  findAll() {
-    return `This action returns all modelo`;
+  async findAll(): Promise<Modelo[]> {
+    return this.modeloModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} modelo`;
+  async findOne(id: string): Promise<Modelo> {
+    return this.modeloModel.findById(id).exec();
   }
 
-  update(id: number, updateModeloInput: UpdateModeloInput) {
-    return `This action updates a #${id} modelo`;
+  async update(
+    id: string,
+    updateModelosDeMarcaInput: UpdateModeloInput,
+  ): Promise<Modelo> {
+    return this.modeloModel
+      .findByIdAndUpdate(id, updateModelosDeMarcaInput, { new: true })
+      .exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} modelo`;
+  async remove(id: string): Promise<Modelo> {
+    return this.modeloModel.findByIdAndDelete(id).exec();
   }
 }

@@ -1,26 +1,37 @@
+// marca.service.ts
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateMarcaInput } from './dto/create-marca.input';
 import { UpdateMarcaInput } from './dto/update-marca.input';
+import { Marca, MarcaDocument } from './model/marca.model';
 
 @Injectable()
 export class MarcaService {
-  create(createMarcaInput: CreateMarcaInput) {
-    return 'This action adds a new marca';
+  constructor(
+    @InjectModel(Marca.name) private marcaModel: Model<MarcaDocument>,
+  ) {}
+
+  async create(createMarcaInput: CreateMarcaInput): Promise<Marca> {
+    const newMarca = new this.marcaModel(createMarcaInput);
+    return newMarca.save();
   }
 
-  findAll() {
-    return `This action returns all marca`;
+  async findAll(): Promise<Marca[]> {
+    return this.marcaModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} marca`;
+  async findOne(id: string): Promise<Marca> {
+    return this.marcaModel.findById(id).exec();
   }
 
-  update(id: number, updateMarcaInput: UpdateMarcaInput) {
-    return `This action updates a #${id} marca`;
+  async update(id: string, updateMarcaInput: UpdateMarcaInput): Promise<Marca> {
+    return this.marcaModel
+      .findByIdAndUpdate(id, updateMarcaInput, { new: true })
+      .exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} marca`;
+  async remove(id: string): Promise<Marca> {
+    return this.marcaModel.findByIdAndDelete(id).exec();
   }
 }

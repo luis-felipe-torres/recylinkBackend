@@ -19,7 +19,7 @@ export class MarcaResolver {
   }
 
   @Query(() => Marca, { name: 'marca' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.marcaService.findOne(id);
   }
 
@@ -29,7 +29,7 @@ export class MarcaResolver {
   }
 
   @Mutation(() => Marca)
-  removeMarca(@Args('id', { type: () => Int }) id: number) {
+  removeMarca(@Args('id', { type: () => String }) id: string) {
     return this.marcaService.remove(id);
   }
 }
