@@ -1,0 +1,55 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateMarcaInput {
+  descripcion: String!
+  nombre: String!
+  url_imagen: String!
+}
+
+input CreateModeloInput {
+  Marca_id: String!
+  descripcion: String!
+  nombre: String!
+  url_imagen: String!
+}
+
+type Marca {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Modelo {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Mutation {
+  createMarca(createMarcaInput: CreateMarcaInput!): Marca!
+  createModelo(createModeloInput: CreateModeloInput!): Modelo!
+  removeMarca(id: String!): Marca!
+  removeModelo(id: String!): Modelo!
+  updateMarca(updateMarcaInput: UpdateMarcaInput!): Marca!
+  updateModelo(updateModeloInput: UpdateModeloInput!): Modelo!
+}
+
+type Query {
+  marca(id: String!): Marca!
+  modelo(id: String!): Modelo!
+}
+
+input UpdateMarcaInput {
+  descripcion: String
+  id: String!
+  nombre: String
+  url_imagen: String
+}
+
+input UpdateModeloInput {
+  Marca_id: String
+  descripcion: String
+  id: String!
+  nombre: String
+  url_imagen: String
+}
