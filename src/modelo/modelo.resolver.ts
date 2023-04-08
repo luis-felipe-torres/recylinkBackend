@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { ModeloService } from './modelo.service';
-import { Modelo } from './entities/modelo.entity';
+import { Modelo } from './model/modelo.model';
 import { CreateModeloInput } from './dto/create-modelo.input';
 import { UpdateModeloInput } from './dto/update-modelo.input';
 
@@ -15,7 +15,7 @@ export class ModeloResolver {
     return this.modeloService.create(createModeloInput);
   }
 
-  @Query(() => [Modelo], { name: 'modelo' })
+  @Query(() => [Modelo], { name: 'modelos' })
   findAll() {
     return this.modeloService.findAll();
   }

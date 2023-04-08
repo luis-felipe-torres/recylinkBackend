@@ -9,7 +9,7 @@ export class CreateModeloInput {
   nombre: string;
 
   @Field()
-  Marca_id: string;
+  marca_id: string;
 
   @Field()
   @IsString()

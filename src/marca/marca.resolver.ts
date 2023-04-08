@@ -1,6 +1,6 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { MarcaService } from './marca.service';
-import { Marca } from './entities/marca.entity';
+import { Marca } from './model/marca.model';
 import { CreateMarcaInput } from './dto/create-marca.input';
 import { UpdateMarcaInput } from './dto/update-marca.input';
 
@@ -13,7 +13,7 @@ export class MarcaResolver {
     return this.marcaService.create(createMarcaInput);
   }
 
-  @Query(() => [Marca], { name: 'marca' })
+  @Query(() => [Marca], { name: 'marcas' })
   findAll() {
     return this.marcaService.findAll();
   }
