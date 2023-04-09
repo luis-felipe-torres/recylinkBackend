@@ -1,0 +1,62 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateMarcaInput {
+  descripcion: String!
+  nombre: String!
+  url_imagen: String!
+}
+
+input CreateModeloInput {
+  descripcion: String!
+  marca_id: String!
+  nombre: String!
+  url_imagen: String!
+}
+
+type Marca {
+  descripcion: String!
+  id: ID!
+  nombre: String!
+  url_imagen: String!
+}
+
+type Modelo {
+  descripcion: String!
+  id: ID!
+  marca_id: String!
+  nombre: String!
+  url_imagen: String!
+}
+
+type Mutation {
+  createMarca(createMarcaInput: CreateMarcaInput!): Marca!
+  createModelo(createModeloInput: CreateModeloInput!): Modelo!
+  removeMarca(id: String!): Marca!
+  removeModelo(id: String!): Modelo!
+  updateMarca(updateMarcaInput: UpdateMarcaInput!): Marca!
+  updateModelo(updateModeloInput: UpdateModeloInput!): Modelo!
+}
+
+type Query {
+  marca(id: String!): Marca!
+  marcas: [Marca!]!
+  modelo(id: String!): Modelo!
+  modelos: [Modelo!]!
+}
+
+input UpdateMarcaInput {
+  descripcion: String
+  id: String!
+  nombre: String
+  url_imagen: String
+}
+
+input UpdateModeloInput {
+  descripcion: String
+  id: String!
+  marca_id: String
+  nombre: String
+  url_imagen: String
+}
