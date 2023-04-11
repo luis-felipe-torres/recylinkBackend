@@ -9,5 +9,6 @@ import { MarcaResolver } from './marca.resolver';
     MongooseModule.forFeature([{ name: Marca.name, schema: MarcaSchema }]),
   ],
   providers: [MarcaService, MarcaResolver],
+  exports: [MarcaService],
 })
 export class MarcaModule {}

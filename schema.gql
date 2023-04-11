@@ -25,7 +25,7 @@ type Marca {
 type Modelo {
   descripcion: String!
   id: ID!
-  marca_id: String!
+  marca: Marca!
   nombre: String!
   url_imagen: String!
 }

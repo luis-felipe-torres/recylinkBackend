@@ -4,16 +4,22 @@ import { Model } from 'mongoose';
 import { CreateModeloInput } from './dto/create-modelo.input';
 import { UpdateModeloInput } from './dto/update-modelo.input';
 import { Modelo, ModeloDocument } from './model/modelo.model';
+import { MarcaService } from '../marca/marca.service';
 
 @Injectable()
 export class ModeloService {
   constructor(
     @InjectModel(Modelo.name)
     private modeloModel: Model<ModeloDocument>,
+    private marcaService: MarcaService,
   ) {}
 
   async create(createModeloInput: CreateModeloInput): Promise<Modelo> {
-    const newModelo = new this.modeloModel(createModeloInput);
+    const marca = await this.marcaService.findOne(createModeloInput.marca_id);
+    const newModelo = new this.modeloModel({
+      ...createModeloInput,
+      marca: marca._id,
+    });
     return newModelo.save();
   }
 

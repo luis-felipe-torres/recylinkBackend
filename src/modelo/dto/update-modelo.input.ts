@@ -6,5 +6,3 @@ export class UpdateModeloInput extends PartialType(CreateModeloInput) {
   @Field(() => String)
   id: string;
 }
-
-/*REVISAR*/

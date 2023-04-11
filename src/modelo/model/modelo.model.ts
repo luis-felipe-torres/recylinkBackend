@@ -15,9 +15,9 @@ export class Modelo extends Document {
   @Prop({ required: true })
   nombre: string;
 
-  @Field()
+  @Field(() => Marca)
   @Prop({ required: true, type: Types.ObjectId, ref: 'Marca' })
-  marca_id: string;
+  marca: Marca;
 
   @Field()
   @Prop()
